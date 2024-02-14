@@ -1,0 +1,88 @@
+Tiempo de ejecucion
+c < log n < n < n*log n < n^2 < n^3 < 2^n
+
+Sorting:
+	BubbleSort:
+		Mejor caso: O(n) - La lista ya esta ordenada.
+		Peor caso: O(n^2) - La lista esta ordenada en orden inverso.
+	InsertionSort:
+		Mejor caso: O(n) - La lista ya esta ordenada.
+		Peor caso: O(n^2) - La lista esta ordenada en orden inverso.
+	SelectionSort:
+		Mejor y Peor caso: O(n^2) - No importa si la lista está ordenada o no, ya que siempre realiza el mismo número de comparaciones y 							intercambios.
+	QuickSort:
+		Mejor caso: O(n*log n) - ?????
+		Peor caso: O(n^2) - La lista esta ordenada.
+	MergeSort:
+		Mejor y Peor caso: O(n*log n) - Tiene un rendimiento eficiente.
+	CountingSort:
+		Mejor y Peor caso: O(n+k) - Mientras mas grande sea el k, mas ineficiente es.
+	RadixSort:
+		Mejor y Peor caso: O(n*k) - Mientras mas grande sea el k, mas ineficiente es.
+	ShellSort:
+		Mejor caso: O(n*log n) - Dependiendo de la secuencia de incrementos utilizada.
+		Peor caso: O(n^2) - Similar al BubbleSort.
+
+
+			n = cant nodos.
+Tree:
+	PreOrder,InOrder,PosOrder: O(n)
+
+ABB:
+	Altura:
+		Mejor caso: O(log n) - Arbol balanceado.
+		Peor caso: O(n) - Arbol no balanceado.
+	Insertar:
+		Mejor caso: O(log n) - Arbol balanceado.
+		Peor caso: O(n) - Arbol no balanceado.
+	Eliminar:
+		Mejor caso: O(log n) - Arbol balanceado.
+		Peor caso: O(n) - Arbol no balanceado.
+	Buscar:
+		Mejor caso: O(log n) - Arbol balanceado.
+		Peor caso: O(n) - Arbol no balanceado.
+	TreeSort:
+		Mejor caso: O(n*log n)
+		Peor caso: O(n^2)
+
+AVL:
+	Altura: O(log n) - Arbol balanceado.
+	Insertar: O(log n) - Arbol balanceado.
+	Eliminar: O(log n) - Arbol balanceado.
+	Buscar: O(log n) - Arbol balanceado.
+
+2-3:
+	Altura: O(log n)
+	Insertar: O(log n)
+	Eliminar: O(log n)
+	Buscar: O(log n)
+
+heaps:
+	Altura: O(log n)
+	Insertar: O(log n)
+	Eliminar: O(log n)
+	HeapSort: O(n*log n)
+
+Union-Find:
+	Altura: O(log n)
+	Find: O(log n)
+	Union: O(log n)
+	
+	
+			V = cant.Vertices	A = cant.Aristas
+Grafos:
+	Implementacion:
+		Lista de Adyacencia:
+			Espacio: O(|V| + |A|)
+			Nodos Conectados: O(n)
+		Matriz de Adyacencias:
+			Espacio: O(V^2)
+			Nodos Conectados: O(c)
+	DFS: O(|V| + |A|)
+	BFS: O(|V| + |A|)
+	Caminos mas Cortos:
+		Warshall: O(V^3)
+		Dijkstra: O(|A|log |V|)
+	Arboles Abarcadores Minimos:
+		Prims: O(|A|log |V|)
+		Kruskal: O(A*log V)
