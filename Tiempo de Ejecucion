@@ -82,7 +82,8 @@ Grafos:
 	BFS: O(|V| + |A|)
 	Caminos mas Cortos:
 		Warshall: O(V^3)
-		Dijkstra: O(|A|log |V|)
+		Dijkstra: O(|A|*log |V|)
 	Arboles Abarcadores Minimos:
-		Prims: O(|A|log |V|)
+		Prims: O(|A|*log |V|)
 		Kruskal: O(A*log V)
+	Ordenamiento Topologico: O(|V| + |A|)
