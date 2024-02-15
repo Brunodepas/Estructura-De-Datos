@@ -11,7 +11,7 @@ Sorting:
 	SelectionSort:
 		Mejor y Peor caso: O(n^2) - No importa si la lista está ordenada o no, ya que siempre realiza el mismo número de comparaciones y 							intercambios.
 	QuickSort:
-		Mejor caso: O(n*log n) - ?????
+		Mejor caso: O(n*log n) - El particion siempre parte el arreglo en dos partes iguales.
 		Peor caso: O(n^2) - La lista esta ordenada.
 	MergeSort:
 		Mejor y Peor caso: O(n*log n) - Tiene un rendimiento eficiente.

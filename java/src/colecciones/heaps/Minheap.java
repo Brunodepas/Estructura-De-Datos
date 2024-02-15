@@ -110,6 +110,34 @@ public class Minheap<T extends Comparable<T>> {
         return minElem;
     }
 
+    public boolean repOk() {
+        if (raiz == null) {
+            return true;
+        }
+    
+        // Verificar la propiedad de orden
+        for (int i = 0; i < elementos(); i++) {
+            int padre = i;
+            int hi = hi(padre);
+            int hd = hd(padre);
+            if ((hi != -1 && raiz.get(padre).compareTo(raiz.get(hi)) > 0) || (hd != -1 && raiz.get(padre).compareTo(raiz.get(hd)) > 0)) {
+                return false;
+            }
+        }
+    
+        // Verificar estructura de árbol completo
+        for (int i = 0; i < elementos(); i++) {
+            int hi = hi(i);
+            int hd = hd(i);
+            if ((hi != -1 && 2 * i + 1 >= elementos()) || (hd != -1 && 2 * i + 2 >= elementos())) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    
+
     public String toString(){
         if (isEmpty()) {
             return "[ ]";
@@ -129,8 +157,11 @@ public class Minheap<T extends Comparable<T>> {
         heap.insertar(5);
         heap.insertar(8);
         heap.insertar(9);
+        heap.insertar(20);
+        heap.insertar(1);
         heap.insertar(4);
         System.out.println(heap.elementos());
+        System.out.println(heap.repOk());
         heap.remover();
     }
 }

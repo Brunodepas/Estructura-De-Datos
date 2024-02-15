@@ -152,7 +152,7 @@ public class GrafoDirigido<T> {
         return cadena + "}";
     }
 
-    public void dfs(Vertice<T> origen, ArrayList<Vertice<T>> visitados) {
+    public void dfs(Vertice<T> origen, Set<Vertice<T>> visitados) {
         if (!visitados.contains(origen)) {
             visitados.add(origen);
             System.out.println(origen.getValor());
@@ -164,7 +164,7 @@ public class GrafoDirigido<T> {
         }
     }
 
-    public void bfs(Vertice<T> origen, ArrayList<Vertice<T>> visitados) {
+    public void bfs(Vertice<T> origen, Set<Vertice<T>> visitados) {
         if (!visitados.contains(origen)) {
             Queue<Vertice<T>> q = new LinkedList<>();
             q.add(origen);
@@ -185,7 +185,7 @@ public class GrafoDirigido<T> {
     }
 
     public boolean conexo() {
-        ArrayList<Vertice<T>> visitados = new ArrayList<>();
+        Set<Vertice<T>> visitados = new HashSet<>();
         for (Vertice<T> origen : vertices()) {
             dfsconexo(origen, visitados);
             if (visitados.size() != cantVertices()) {
@@ -195,7 +195,7 @@ public class GrafoDirigido<T> {
         }
         return true;
     }
-    private void dfsconexo(Vertice<T> origen, ArrayList<Vertice<T>> visitados) {
+    private void dfsconexo(Vertice<T> origen, Set<Vertice<T>> visitados) {
         if (!visitados.contains(origen)) {
             visitados.add(origen);
             if (origen.getAdyacentes() != null) {
@@ -344,9 +344,7 @@ public class GrafoDirigido<T> {
             prev.put(w.getValor(), null);
             dist.put(w.getValor(), inf);
         }
-
         dist.put(origen.getValor(), 0);
-
         Set<Vertice<T>> s = new HashSet<>();
         PriorityQueue<Vertice<T>> q = new PriorityQueue<>(Comparator.comparingInt(vertice -> dist.get(vertice.getValor())));
         q.add(origen);
@@ -440,10 +438,11 @@ public class GrafoDirigido<T> {
 
     public boolean cicloNegativo() {
         Set<Vertice<T>> visitados = new HashSet<>();
+        Set<Vertice<T>> enProceso = new HashSet<>();
         
         for (Vertice<T> v : vertices) {
             if (!visitados.contains(v)) {
-                if (tieneCicloNegDFS(v, visitados)) {
+                if (tieneCicloNegDFS(v, visitados, enProceso)) {
                     return true;
                 }
             }
@@ -452,22 +451,25 @@ public class GrafoDirigido<T> {
         return false;
     }
     
-    private boolean tieneCicloNegDFS(Vertice<T> origen, Set<Vertice<T>> visitados) {
+    private boolean tieneCicloNegDFS(Vertice<T> origen, Set<Vertice<T>> visitados, Set<Vertice<T>> enProceso) {
         visitados.add(origen);
-    
+        enProceso.add(origen);
+
         if (origen.getAdyacentes() != null) {
             for (Vertice<T> adyacente : origen.getAdyacentes()) {
                 int costoArista = pesoArista(origen, adyacente);
                 if (!visitados.contains(adyacente)) {
-                    if (tieneCicloNegDFS(adyacente, visitados)) {
+                    if (tieneCicloNegDFS(adyacente, visitados, enProceso)) {
                         return true;
                     }
-                } else if (costoArista < 0) { // Verifica si la arista tiene costo negativo
+                } 
+                else if (enProceso.contains(adyacente) && costoArista < 0) {
                     return true;
                 }
             }
         }
-    
+
+        enProceso.remove(origen);
         return false;
     }
     

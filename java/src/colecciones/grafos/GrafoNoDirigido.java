@@ -224,7 +224,6 @@ public class GrafoNoDirigido<T> {
 
     public void aamPrims() {
         List<Arista<T>> arbolMin = prims();
-        //arbolMin.sort(Comparator.comparingInt(Arista::getCosto));
         int costoTotal = 0;
         System.out.println("Árbol de Expansión Mínima (Prim):");
         for (Arista<T> arista : arbolMin) {
@@ -285,9 +284,11 @@ public class GrafoNoDirigido<T> {
         for (Arista<T> arista : aristasOrd) {
             Vertice<T> v1 = arista.getV1();
             Vertice<T> v2 = arista.getV2();
-            if (conjuntos.find(vertices().indexOf(v1)) != conjuntos.find(vertices().indexOf(v2))) {
+            int indexv1 = vertices().indexOf(v1);
+            int indexv2 = vertices().indexOf(v2);
+            if (conjuntos.find(indexv1) != conjuntos.find(indexv2)) {
                 arbolMin.add(arista);
-                conjuntos.union(vertices().indexOf(v1), vertices().indexOf(v2));
+                conjuntos.union(indexv1, indexv2);
             }
         }
         return arbolMin;

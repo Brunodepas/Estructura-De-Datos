@@ -205,6 +205,19 @@ public class ArraySorter {
         }
     }
 
+    public static <T extends Comparable<? super T>> void shellSort(T[] arreglo) {
+        int n = arreglo.length;
+        for (int g = n/2;g >0 ;g = g == 2 ? 1:(int) (g / 2.2) ) {
+            for (int i = g;i < n ; i++) {
+               T temp = arreglo[i];
+               int j = i;
+               for (; j>= g && (temp.compareTo(arreglo[j-g])<0);j -= g )
+                  arreglo[j] = arreglo [j - g];
+                arreglo[j] = temp;
+            }
+         }
+    }
+
     public static <T extends Comparable<T>> void treeSort(T[] arreglo) {
         ABB<T> arbol = new ABB<>();
         for (int i = 0; i < arreglo.length; i++) {
